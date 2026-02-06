@@ -87,15 +87,46 @@
     });
 
     // ============================================
-    // Interactive Video Placeholder
+    // Video Player Controls
     // ============================================
 
+    const videoContainer = document.querySelector('.video-container');
+    const gameVideo = document.querySelector('.game-video');
     const playButton = document.querySelector('.play-button');
-    if (playButton) {
+
+    if (gameVideo && playButton && videoContainer) {
+        // Play video when play button is clicked
         playButton.addEventListener('click', () => {
-            // Placeholder for video modal or link
-            console.log('Video placeholder clicked - Replace with actual video implementation');
-            // Example: window.open('https://youtube.com/watch?v=...', '_blank');
+            gameVideo.play();
+            videoContainer.classList.add('playing');
+        });
+
+        // Hide overlay when video starts playing
+        gameVideo.addEventListener('play', () => {
+            videoContainer.classList.add('playing');
+        });
+
+        // Show overlay when video is paused (if user pauses manually)
+        gameVideo.addEventListener('pause', () => {
+            if (gameVideo.currentTime > 0) {
+                // Only show overlay if video was playing (not initial state)
+                // This prevents overlay from showing on initial load
+            }
+        });
+
+        // Handle video ended - show overlay again
+        gameVideo.addEventListener('ended', () => {
+            videoContainer.classList.remove('playing');
+        });
+
+        // Optional: Click on video to play/pause
+        gameVideo.addEventListener('click', () => {
+            if (gameVideo.paused) {
+                gameVideo.play();
+                videoContainer.classList.add('playing');
+            } else {
+                gameVideo.pause();
+            }
         });
     }
 
