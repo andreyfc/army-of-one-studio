@@ -586,40 +586,14 @@ body {
 }
 
 .screenshot {
+    width: 100%;
     aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     background: var(--gradient-hero);
-    position: relative;
-    overflow: hidden;
-}
-
-.screenshot::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
-}
-
-.screenshot-1::before {
-    background: linear-gradient(135deg, rgba(255, 107, 157, 0.3) 0%, rgba(255, 230, 109, 0.3) 100%);
-}
-
-.screenshot-2::before {
-    background: linear-gradient(135deg, rgba(78, 205, 196, 0.3) 0%, rgba(168, 230, 207, 0.3) 100%);
-}
-
-.screenshot-3::before {
-    background: linear-gradient(135deg, rgba(255, 179, 186, 0.3) 0%, rgba(186, 225, 255, 0.3) 100%);
-}
-
-.screenshot-4::before {
-    background: linear-gradient(135deg, rgba(168, 230, 207, 0.3) 0%, rgba(255, 107, 157, 0.3) 100%);
 }
 
 .screenshot:hover {
