@@ -87,18 +87,48 @@
     });
 
     // ============================================
-    // Screenshot Hover Effects
+    // Screenshot hover + lightbox (expandir imagem)
     // ============================================
 
     const screenshots = document.querySelectorAll('.screenshot');
+    const lightbox = document.getElementById('screenshot-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
+    const lightboxClose = lightbox?.querySelector('.lightbox-close');
+
+    function openLightbox(src, alt) {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Screenshot em tamanho maior';
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
     screenshots.forEach(screenshot => {
         screenshot.addEventListener('mouseenter', function() {
             this.style.zIndex = '10';
         });
-        
         screenshot.addEventListener('mouseleave', function() {
             this.style.zIndex = '1';
         });
+        screenshot.addEventListener('click', function(e) {
+            e.preventDefault();
+            openLightbox(this.src, this.alt);
+        });
+    });
+
+    if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox?.classList.contains('is-open')) closeLightbox();
     });
 
     // ============================================

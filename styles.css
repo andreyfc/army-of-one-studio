@@ -592,13 +592,91 @@ body {
     display: block;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     background: var(--gradient-hero);
+    cursor: pointer;
 }
 
 .screenshot:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 
+        0 0 20px rgba(255, 107, 157, 0.5),
+        0 0 40px rgba(255, 107, 157, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox - expandir screenshot */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    z-index: 1;
+    transform: scale(0.9);
+    transition: transform var(--transition-normal);
+}
+
+.lightbox.is-open .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 0 60px rgba(255, 107, 157, 0.3);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--color-white);
+    color: var(--color-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+    box-shadow: var(--shadow-md);
+}
+
+.lightbox-close:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
 }
 
 /* ============================================
@@ -794,6 +872,156 @@ body {
 .copyright {
     font-size: 0.875rem;
     color: var(--color-gray);
+}
+
+.footer-legal {
+    font-size: 0.9375rem;
+    margin: 0;
+}
+
+.footer-legal a {
+    color: var(--color-gray);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-legal a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* ============================================
+   Legal / Privacy page
+   ============================================ */
+
+.legal-page-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gradient-hero);
+}
+
+.legal-header {
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.legal-header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+}
+
+.legal-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.legal-back-link:hover {
+    color: var(--color-secondary);
+}
+
+.legal-logo-link {
+    display: block;
+    line-height: 0;
+}
+
+.legal-logo {
+    max-height: 48px;
+    width: auto;
+}
+
+.legal-main {
+    flex: 1;
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.legal-article {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.legal-title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.legal-updated {
+    font-size: 0.9375rem;
+    color: var(--color-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-lead {
+    font-size: 1.0625rem;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--color-gray-light);
+}
+
+.legal-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.legal-section h2 {
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.legal-section p {
+    color: var(--color-gray);
+    font-size: 1rem;
+}
+
+.legal-section strong {
+    color: var(--color-dark);
+}
+
+.legal-contact {
+    margin-top: var(--spacing-sm);
+}
+
+.legal-contact a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+}
+
+.legal-contact a:hover {
+    text-decoration: underline;
+}
+
+.legal-footer {
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.legal-footer .copyright {
+    margin: 0;
 }
 
 /* ============================================
