@@ -79,10 +79,10 @@
                         </iframe>
                     </div>
                     <div class="screenshots">
-                        <img src="screenshot-01.png" alt="Game screenshot 1" class="screenshot screenshot-1">
-                        <img src="screenshot-02.png" alt="Game screenshot 2" class="screenshot screenshot-2">
-                        <img src="screenshot-03.png" alt="Game screenshot 3" class="screenshot screenshot-3">
-                        <img src="screenshot-04.png" alt="Game screenshot 4" class="screenshot screenshot-4">
+                        <img src="screenshot-01.png" alt="Game screenshot 1" class="screenshot screenshot-1" tabindex="0">
+                        <img src="screenshot-02.png" alt="Game screenshot 2" class="screenshot screenshot-2" tabindex="0">
+                        <img src="screenshot-03.png" alt="Game screenshot 3" class="screenshot screenshot-3" tabindex="0">
+                        <img src="screenshot-04.png" alt="Game screenshot 4" class="screenshot screenshot-4" tabindex="0">
                     </div>
                 </div>
             </div>
@@ -196,10 +196,10 @@
     </footer>
 
     <!-- Lightbox para screenshots -->
-    <div class="lightbox" id="screenshot-lightbox" aria-hidden="true">
-        <div class="lightbox-backdrop" aria-label="Fechar"></div>
+    <div class="lightbox" id="screenshot-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
+        <div class="lightbox-backdrop" aria-label="Close"></div>
         <div class="lightbox-content">
-            <button type="button" class="lightbox-close" aria-label="Fechar imagem">&times;</button>
+            <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
             <img src="" alt="" id="lightbox-img">
         </div>
     </div>

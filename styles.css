@@ -595,14 +595,23 @@ body {
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     background: var(--gradient-hero);
     cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .screenshot:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 
+    box-shadow:
         0 0 20px rgba(255, 107, 157, 0.5),
         0 0 40px rgba(255, 107, 157, 0.3),
         0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.screenshot:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+    z-index: 2;
 }
 
 /* Lightbox - expandir screenshot */
@@ -617,12 +626,14 @@ body {
     padding: var(--spacing-md);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .lightbox.is-open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .lightbox-backdrop {

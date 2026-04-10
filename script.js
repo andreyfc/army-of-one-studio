@@ -90,19 +90,23 @@
     // Screenshot hover + lightbox (expandir imagem)
     // ============================================
 
-    const screenshots = document.querySelectorAll('.screenshot');
+    const screenshots = document.querySelectorAll('.screenshots .screenshot');
     const lightbox = document.getElementById('screenshot-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxBackdrop = lightbox?.querySelector('.lightbox-backdrop');
     const lightboxClose = lightbox?.querySelector('.lightbox-close');
 
-    function openLightbox(src, alt) {
+    let lightboxOpener = null;
+
+    function openLightbox(src, alt, openerEl) {
         if (!lightbox || !lightboxImg) return;
+        lightboxOpener = openerEl || null;
         lightboxImg.src = src;
-        lightboxImg.alt = alt || 'Screenshot em tamanho maior';
+        lightboxImg.alt = alt || 'Game screenshot enlarged';
         lightbox.classList.add('is-open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        lightboxClose?.focus({ preventScroll: true });
     }
 
     function closeLightbox() {
@@ -110,18 +114,20 @@
         lightbox.classList.remove('is-open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        const returnFocus = lightboxOpener;
+        lightboxOpener = null;
+        returnFocus?.focus({ preventScroll: true });
     }
 
-    screenshots.forEach(screenshot => {
-        screenshot.addEventListener('mouseenter', function() {
-            this.style.zIndex = '10';
+    screenshots.forEach(img => {
+        img.addEventListener('click', () => {
+            openLightbox(img.currentSrc || img.src, img.alt, img);
         });
-        screenshot.addEventListener('mouseleave', function() {
-            this.style.zIndex = '1';
-        });
-        screenshot.addEventListener('click', function(e) {
-            e.preventDefault();
-            openLightbox(this.src, this.alt);
+        img.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(img.currentSrc || img.src, img.alt, img);
+            }
         });
     });
 
