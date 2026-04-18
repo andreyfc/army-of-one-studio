@@ -627,6 +627,17 @@ body {
     gap: var(--spacing-sm);
 }
 
+.game-store-cta {
+    width: 100%;
+}
+
+.game-store-cta .cta-button.cta-store-link {
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 .screenshot {
     width: 100%;
     aspect-ratio: 16 / 9;
