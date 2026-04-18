@@ -11,6 +11,12 @@
     --color-pink: #FFB3BA;
     --color-blue: #BAE1FF;
     
+    /* Piter & Egg (game brand) */
+    --piter-egg-orange: #df9609;
+    --piter-egg-blue: #5197dd;
+    --piter-egg-gradient: linear-gradient(135deg, var(--piter-egg-orange) 0%, var(--piter-egg-blue) 100%);
+    --piter-egg-gradient-hover: linear-gradient(135deg, #ecb339 0%, #6aa8eb 100%);
+    
     /* Neutral Colors */
     --color-white: #FFFFFF;
     --color-light: #F8F9FA;
@@ -107,6 +113,7 @@ body {
     position: absolute;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     animation: float 20s infinite ease-in-out;
     opacity: 0.6;
@@ -518,6 +525,41 @@ body {
     transform: translateX(4px);
 }
 
+.cta-button.cta-store-link {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding: calc(var(--spacing-sm) + 0.15rem) calc(var(--spacing-md) + 0.25rem);
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.02em;
+    background: var(--piter-egg-gradient);
+    color: var(--color-white);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 4px 18px rgba(81, 151, 221, 0.38),
+        0 4px 24px rgba(223, 150, 9, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.cta-button.cta-store-link:hover {
+    background: var(--piter-egg-gradient-hover);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 10px 32px rgba(81, 151, 221, 0.48),
+        0 8px 28px rgba(223, 150, 9, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.cta-button.cta-store-link:focus-visible {
+    outline: 3px solid var(--piter-egg-blue);
+    outline-offset: 3px;
+}
+
+.cta-button.cta-store-link svg {
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
 .game-media {
     display: flex;
     flex-direction: column;
@@ -916,6 +958,7 @@ body {
     padding: var(--spacing-md) 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
 }
 
@@ -1036,6 +1079,133 @@ body {
 }
 
 /* ============================================
+   Piter & Egg Store page
+   ============================================ */
+
+.store-page-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--gradient-hero);
+}
+
+.store-main {
+    flex: 1;
+}
+
+.store-hero {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    text-align: center;
+}
+
+.store-kicker {
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.store-title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark);
+}
+
+.store-subtitle {
+    max-width: 700px;
+    margin: 0 auto var(--spacing-sm);
+    font-size: 1.1rem;
+    color: var(--color-gray);
+}
+
+.store-note {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 0.95rem;
+    color: var(--color-dark);
+}
+
+.store-gallery-section {
+    padding: 0 0 var(--spacing-xl);
+}
+
+.store-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.product-card {
+    background: var(--gradient-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-image-placeholder {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(78, 205, 196, 0.2));
+}
+
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(78, 205, 196, 0.1));
+}
+
+.product-content {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    height: 100%;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark);
+}
+
+.product-description {
+    color: var(--color-gray);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+.product-price {
+    font-size: 1.05rem;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+.product-card .cta-button {
+    margin-top: auto;
+    justify-content: center;
+}
+
+/* ============================================
    Responsive Design
    ============================================ */
 
@@ -1099,6 +1269,14 @@ body {
     
     .footer-logo {
         max-width: 60px;
+    }
+
+    .store-hero {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .store-gallery-section {
+        padding-bottom: var(--spacing-lg);
     }
 }
 
