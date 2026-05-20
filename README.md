@@ -58,7 +58,7 @@ Edit the CSS variables in `styles.css`:
 - **Game Title**: Update in the "Featured Game" section
 - **Game Description**: Modify the game description text
 - **Social Links**: Update the `href` attributes in the footer
-- **Steam Link**: Replace the placeholder in the CTA button
+- **Store links**: Replace `SEU_APP_ID` in the Google Play and App Store download buttons
 
 ### Placeholder Assets
 

@@ -525,6 +525,62 @@ body {
     transform: translateX(4px);
 }
 
+.store-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 1rem 0.55rem 0.75rem;
+    background: var(--color-dark);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    min-width: 10.5rem;
+}
+
+.store-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: #2d3436;
+}
+
+.store-badge:focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+}
+
+.store-badge-icon {
+    flex-shrink: 0;
+}
+
+.store-badge-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.store-badge-label {
+    font-size: 0.6rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.store-badge-name {
+    font-size: 1.05rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+}
+
 .cta-button.cta-store-link {
     margin-bottom: var(--spacing-sm);
     position: relative;
